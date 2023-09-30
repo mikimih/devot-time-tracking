@@ -1,0 +1,37 @@
+{
+  "name": "devote-time-tracking",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier -w .",
+    "format:check": "prettier -c ."
+  },
+  "dependencies": {
+    "clsx": "^1.2.1",
+    "firebase": "^10.4.0",
+    "next": "latest",
+    "primereact": "^10.0.2",
+    "react": "latest",
+    "react-dom": "latest",
+    "tailwind-merge": "^1.13.2"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "autoprefixer": "latest",
+    "encoding": "^0.1.13",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "next-sitemap": "^2.5.28",
+    "postcss": "latest",
+    "prettier": "^2.8.8",
+    "prettier-plugin-tailwindcss": "^0.1.13",
+    "tailwindcss": "latest",
+    "typescript": "latest"
+  }
+}
