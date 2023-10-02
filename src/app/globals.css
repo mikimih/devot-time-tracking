@@ -6,14 +6,34 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+    --color-primary: #FF6D00;
+    --color-primary-dark: #FF5722;
+    --color-secondary: #181846;
+    --color-secondary-dark: #0C0D25;
+    --color-ghost: #C4C5D7;
+    --color-grey: #5F6B8A;
+    --color-white-whisper: #ECEDF5;
+    --color-white-lilac: #F9F9FD;
+    --color-alert: #D0342C;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+:root, body, html {
+    height: 100%;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  user-select: none;
+}
+
+html {
+  font-size: 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
 
 body {
@@ -24,4 +44,32 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+button {
+  color: inherit;
+}
+
+a, button {
+  touch-action: manipulation;
+}
+
+svg {
+  height: 100%;
+  width: 100%;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+iframe, video {
+  height: 100%;
+  width: 100%
+}
+
+* {
+ padding: 0;
+ margin: 0;
 }
