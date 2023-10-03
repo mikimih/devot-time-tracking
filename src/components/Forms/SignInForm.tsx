@@ -9,10 +9,6 @@ import InputField from '@/components/InputField/InputField';
 import PasswordField from '@/components/InputField/PasswordField';
 import ButtonComponent from '@/components/Button/ButtonComponent';
 
-const getCharacterValidationError = (str: string) => {
-  return `Your password must have at least 1 ${str} character`;
-};
-
 const schema = yup
   .object({
     email: yup

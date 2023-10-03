@@ -7,14 +7,12 @@ import historyIcon from '../../../public/svg/history.svg';
 import turnOffIcon from '../../../public/svg/turn-off.svg';
 import HeaderButton from '@/components/Header/HeaderButton';
 import React, { useState } from 'react';
-import { MenuItem, MenuItemCommandEvent } from 'primereact/menuitem';
-import { Menubar } from 'primereact/menubar';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from 'primereact/button';
 import { cn } from '@/lib/utils';
 
-function Header() {
+export default function Header() {
   const router = useRouter();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
 
@@ -29,14 +27,14 @@ function Header() {
             height={44}
             priority={true}
           />
-          <span className='text-l self-center whitespace-nowrap pl-2 pt-[10px] font-bold leading-[17px] text-white max-sm:hidden lg:text-2xl'>
+          <span className='text-l self-center whitespace-nowrap pl-2 pt-[10px] font-bold leading-[0.94em] text-white max-sm:hidden lg:text-2xl'>
             Tracking tool
           </span>
         </Link>
-        <button
+        <Button
           data-collapse-toggle='navbar-default'
           type='button'
-          className='hover:bg-grey my-[34px] inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-white focus:outline-none focus:ring-2  focus:ring-gray-200 max-lg:my-[16px] md:hidden'
+          className='hover:bg-gray my-[34px] inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-white focus:outline-none focus:ring-2  focus:ring-gray-200 max-lg:my-[16px] md:hidden'
           aria-controls='navbar-default'
           aria-expanded='false'
           onClick={() => setToggleMenu(!toggleMenu)}
@@ -57,7 +55,7 @@ function Header() {
               d='M1 1h15M1 7h15M1 13h15'
             />
           </svg>
-        </button>
+        </Button>
         <div
           className={cn(
             !toggleMenu ? 'hidden' : 'flex',
@@ -95,5 +93,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

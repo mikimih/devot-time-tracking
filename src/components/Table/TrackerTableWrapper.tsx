@@ -6,7 +6,8 @@ import NextImage from '@/components/NextImage';
 import TableComponent from '@/components/Table/TableComponent';
 
 interface TrackerTableWrapperProps {}
-function TrackerTableWrapper(props: TrackerTableWrapperProps) {
+
+export default function TrackerTableWrapper(props: TrackerTableWrapperProps) {
   const {} = props;
   return (
     <div className='flex flex-col'>
@@ -45,5 +46,3 @@ function TrackerTableWrapper(props: TrackerTableWrapperProps) {
     </div>
   );
 }
-
-export default TrackerTableWrapper;

@@ -10,7 +10,7 @@ interface DatePickerFieldProps {
   customStyle?: string;
 }
 
-function DatePickerField(props: DatePickerFieldProps) {
+export default function DatePickerField(props: DatePickerFieldProps) {
   const { value, onChange, maxDate, name, customStyle } = props;
 
   return (
@@ -20,7 +20,7 @@ function DatePickerField(props: DatePickerFieldProps) {
         customStyle
       )}
     >
-      <label htmlFor={name} className='text-grey m-1 text-sm/[1.21em]'>
+      <label htmlFor={name} className='text-gray m-1 text-sm/[1.21em]'>
         {name}
       </label>
       <Calendar
@@ -35,13 +35,11 @@ function DatePickerField(props: DatePickerFieldProps) {
         readOnlyInput
         showButtonBar
         className={cn(
-          'text-grey placeholder-grey [&>input:focus]:outline-primary-50 text-lg leading-[17px] max-md:max-w-[95vw] [&>input]:p-[9px_20px]',
-          '[&>button]:text-grey [&>button]:bg-white [&>button]:p-[8px_6px_10px_6px]'
+          'text-gray placeholder-gray [&>input:focus]:outline-primary-50 text-lg leading-[0.94em] max-md:max-w-[95vw] [&>input]:p-[9px_20px]',
+          '[&>button]:text-gray [&>button]:bg-white [&>button]:p-[8px_6px_10px_6px]'
         )}
         pt={datePickerStyle}
       />
     </div>
   );
 }
-
-export default DatePickerField;

@@ -16,7 +16,7 @@ const config: Config = {
         },
         secondary: 'var(--color-secondary)',
         secondaryDark: 'var(--color-secondary-dark)',
-        grey: 'var(--color-grey)',
+        gray: 'var(--color-gray)',
         ghost: 'var(--color-ghost)',
         whisper: 'var(--color-white-whisper)',
         lilac: 'var(--color-white-lilac)',

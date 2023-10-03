@@ -24,7 +24,7 @@ export default function PasswordField(props: PasswordFieldProp) {
     <Controller
       name={name}
       control={control}
-      render={({ field, fieldState }) => (
+      render={({ field }) => (
         <div
           className={cn(
             'card justify-content-center flex flex-col',
@@ -38,7 +38,7 @@ export default function PasswordField(props: PasswordFieldProp) {
             feedback={false}
             placeholder={placeholder}
             className={cn(
-              '[&>input]:placeholder-grey  relative text-lg leading-[17px]',
+              '[&>input]:placeholder-gray  relative text-lg leading-[0.94em]',
               '[&>input:focus]:placeholder-secondaryDark [&>input:focus]:outline-primary-50 [&>input]:w-full [&>input]:p-[12px_20px]',
               '[&>i]:absolute [&>i]:right-0 [&>i]:top-1/2 [&>i]:-translate-x-1/2 [&>i]:-translate-y-1/2 [&>i]:transform [&>i]:cursor-pointer',
               '[&>i>svg]:h-[20px] [&>i>svg]:w-[20px]',

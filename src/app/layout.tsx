@@ -11,6 +11,8 @@ import { ReactNode } from 'react';
 const nunito = Nunito_Sans({
   subsets: ['latin'],
   weight: ['400', '600', '700'],
+  display: 'swap',
+  variable: '--font-nunito-sant',
 });
 
 export const metadata: Metadata = {

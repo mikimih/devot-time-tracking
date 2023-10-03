@@ -22,7 +22,7 @@ export default function ButtonComponent(props: ButtonComponentProps) {
       loading={isLoading}
       disabled={disabled}
       className={cn(
-        ' bg-primary-100 rounded-[3px] border p-[10px_20px_10px_10px] text-sm font-bold leading-[17px] text-white',
+        ' bg-primary-100 rounded-[3px] border p-[10px_20px_10px_10px] text-sm font-bold leading-[1.21em] text-white',
         secondary ? 'bg-secondary border-secondary' : '',
         customStyle
       )}

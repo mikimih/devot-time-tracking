@@ -7,7 +7,7 @@ export default function Page() {
   return (
     <>
       <div className='bg-lilac border-whisper mb-[30px] flex flex-col items-center rounded-lg border-[0.1em] border-solid p-[44px_35px_60px_44px]'>
-        <h1 className='text-secondaryDark mb-[50px] text-2xl font-bold leading-[17px]'>
+        <h1 className='text-secondaryDark mb-[50px] text-2xl font-bold leading-[0.7em]'>
           Login
         </h1>
         <SignInForm />
@@ -21,12 +21,12 @@ export default function Page() {
           priority={true}
         />
         <div className=' ml-[34px] flex flex-col'>
-          <p className='text-grey mb-1.5 text-lg font-semibold leading-[17px]'>
+          <p className='text-gray mb-1.5 text-lg font-semibold leading-[0.94em]'>
             Need an account?
           </p>
           <Link
             href={'signup'}
-            className='text-primary-100 text-sm font-bold leading-[17px] underline'
+            className='text-primary-100 text-sm font-bold leading-[1.21em] underline'
           >
             Register here
           </Link>

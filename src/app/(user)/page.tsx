@@ -7,7 +7,8 @@ import dayjs from 'dayjs';
 import NextImage from '@/components/NextImage';
 import dateIcon from '../../../public/svg/calendar.svg';
 import TrackerTableWrapper from '@/components/Table/TrackerTableWrapper';
-function Page() {
+
+export default function Page() {
   const { user } = useAuthContext();
   const router = useRouter();
 
@@ -27,5 +28,3 @@ function Page() {
     </>
   );
 }
-
-export default Page;

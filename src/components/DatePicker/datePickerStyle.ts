@@ -1,11 +1,14 @@
 import { classNames } from 'primereact/utils';
-import { CalendarPassThroughOptions } from 'primereact/calendar';
+import {
+  CalendarPassThroughMethodOptions,
+  CalendarPassThroughOptions,
+} from 'primereact/calendar';
 
 export const datePickerStyle: CalendarPassThroughOptions = {
   header: {
     className: classNames(
       'flex items-center justify-between overflow-x-auto',
-      'p-2 text-secondaryDark bg-whisper font-semibold m-0 border-b border-grey rounded-t-lg'
+      'p-2 text-secondaryDark bg-whisper font-semibold m-0 border-b border-gray rounded-t-lg'
     ),
   },
   panel: () => ({
@@ -18,10 +21,10 @@ export const datePickerStyle: CalendarPassThroughOptions = {
     className: classNames('border-collapse', 'my-2'),
   },
   yearTitle: {
-    className: classNames('transition duration-200 pl-2', 'hover:text-grey'),
+    className: classNames('transition duration-200 pl-2', 'hover:text-gray'),
   },
   monthTitle: {
-    className: classNames('transition duration-200 pl-2', 'hover:text-grey'),
+    className: classNames('transition duration-200 pl-2', 'hover:text-gray'),
   },
   tableheadercell: 'p-2',
   weekday: 'text-primaryDark ',
@@ -34,8 +37,7 @@ export const datePickerStyle: CalendarPassThroughOptions = {
       'first:pl-0 first:border-l-0'
     ),
   },
-  // @ts-ignore
-  daylabel: ({ context }) => ({
+  daylabel: ({ context }: CalendarPassThroughMethodOptions) => ({
     className: classNames(
       'sm:w-10 sm:h-10 h-8 w-8 rounded-full transition-shadow duration-200 border-transparent border',
       'flex items-center justify-center mx-auto overflow-hidden relative',
@@ -53,8 +55,7 @@ export const datePickerStyle: CalendarPassThroughOptions = {
     ),
   }),
   monthpicker: 'p-2',
-  // @ts-ignore
-  month: ({ context }) => ({
+  month: ({ context }: CalendarPassThroughMethodOptions) => ({
     className: classNames(
       'w-1/3 inline-flex items-center justify-center cursor-pointer overflow-hidden relative',
       'p-2 transition-shadow duration-200 rounded-lg',
@@ -70,8 +71,7 @@ export const datePickerStyle: CalendarPassThroughOptions = {
   yearpicker: {
     className: classNames('my-2'),
   },
-  // @ts-ignore
-  year: ({ context }) => ({
+  year: ({ context }: CalendarPassThroughMethodOptions) => ({
     className: classNames(
       'w-1/2 inline-flex items-center justify-center cursor-pointer overflow-hidden relative',
       'p-2 transition-shadow duration-200 rounded-lg',

@@ -2,16 +2,18 @@ import { MouseEventHandler } from 'react';
 import NextImage from '@/components/NextImage';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import { Button } from 'primereact/button';
+
 interface HeaderNavLinkProps {
   onClick: MouseEventHandler;
   name: string;
   icon?: string | StaticImport;
 }
-function HeaderNavLink(props: HeaderNavLinkProps) {
+
+export default function HeaderNavLink(props: HeaderNavLinkProps) {
   const { name, icon, onClick } = props;
   return (
     <Button
-      className='text-lilac ml-[50px] w-full text-[15px] font-bold leading-[17px] hover:opacity-90  max-md:ml-0 max-md:p-4'
+      className='text-lilac ml-[50px] w-full text-[15px] font-bold leading-[1.13em] hover:opacity-90  max-md:ml-0 max-md:p-4'
       onClick={onClick}
       type='button'
     >
@@ -32,5 +34,3 @@ function HeaderNavLink(props: HeaderNavLinkProps) {
     </Button>
   );
 }
-
-export default HeaderNavLink;

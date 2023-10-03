@@ -3,13 +3,10 @@ import React from 'react';
 import { useAuthContext } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import PageTitle from '@/components/PageTitle';
-import dayjs from 'dayjs';
-import NextImage from '@/components/NextImage';
-import dateIcon from '../../../public/svg/calendar.svg';
 import TrackerHistoryTableWrapper from '@/components/Table/TrackerHistoryTableWrapper';
-function Page() {
+
+export default function Page() {
   const { user } = useAuthContext();
-  const router = useRouter();
 
   // React.useEffect(() => {
   //   if (user == null) router.push('/');
@@ -22,5 +19,3 @@ function Page() {
     </>
   );
 }
-
-export default Page;

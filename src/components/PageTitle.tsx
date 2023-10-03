@@ -6,7 +6,8 @@ interface PageTitleProps {
   customStyle?: string;
   icon?: ReactElement;
 }
-function PageTitle(props: PageTitleProps) {
+
+export default function PageTitle(props: PageTitleProps) {
   const { title, customStyle, icon } = props;
   return (
     <div
@@ -17,12 +18,10 @@ function PageTitle(props: PageTitleProps) {
     >
       {icon}
       <h1
-        className={cn('text-secondaryDark text-2xl font-bold leading-[17px]')}
+        className={cn('text-secondaryDark text-2xl font-bold leading-[0.7em]')}
       >
         {title}
       </h1>
     </div>
   );
 }
-
-export default PageTitle;

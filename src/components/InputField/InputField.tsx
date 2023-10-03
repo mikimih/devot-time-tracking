@@ -1,7 +1,7 @@
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 import { InputText } from 'primereact/inputtext';
 import { cn } from '@/lib/utils';
-import { ChangeEventHandler, MouseEventHandler, ReactElement } from 'react';
+import { ChangeEventHandler, MouseEventHandler } from 'react';
 import { Button } from 'primereact/button';
 import NextImage from '@/components/NextImage';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
@@ -14,16 +14,17 @@ interface TextInputFieldProps {
   customStyle?: string;
   value?: string;
   label?: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   iconRight?: StaticImport;
   onIconClick?: MouseEventHandler;
 }
+
 interface InputProps {
   id: string;
   value?: string;
   placeholder: string;
   hasErrors?: boolean;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   iconRight?: StaticImport;
   onIconClick?: MouseEventHandler;
 }
@@ -45,8 +46,9 @@ const Input = (props: InputProps) => {
         value={value}
         placeholder={placeholder}
         className={cn(
-          'placeholder-grey focus:placeholder-secondaryDark focus:outline-primary-50 p-[9px_20px] text-lg leading-[17px]',
-          hasErrors && 'border-alert rounded border-[2px] border-solid'
+          'placeholder-gray focus:placeholder-secondaryDark focus:outline-primary-50 p-[9px_20px] text-lg leading-[0.94em]',
+          hasErrors && 'border-alert rounded border-[2px] border-solid',
+          !iconRight && 'w-full'
         )}
         onChange={onChange}
       />
@@ -96,7 +98,7 @@ export default function InputField(props: TextInputFieldProps) {
         <Controller
           name={name}
           control={control}
-          render={({ field, fieldState }) => (
+          render={({ field }) => (
             <div
               className={cn(
                 'card justify-content-center flex flex-col',
@@ -123,7 +125,7 @@ export default function InputField(props: TextInputFieldProps) {
             customStyle
           )}
         >
-          <label htmlFor={name} className='text-grey m-1 text-sm/[1.21em]'>
+          <label htmlFor={name} className='text-gray m-1 text-sm/[1.21em]'>
             {name}
           </label>
           <Input
