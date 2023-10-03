@@ -6,13 +6,13 @@ import SignUpForm from '@/components/Forms/SignUpForm';
 export default function Page() {
   return (
     <>
-      <div className='bg-lilac border-whisper mb-[30px] flex flex-col items-center rounded-lg border-[0.1em] border-solid p-[44px_35px_60px_44px]'>
+      <div className='bg-lilac border-whisper mb-[30px] flex flex-col items-center rounded-lg border-[0.1em] border-solid p-[28px_35px_32px_44px]'>
         <h1 className='text-secondaryDark mb-[50px] text-2xl font-bold leading-[0.7em]'>
           Register
         </h1>
         <SignUpForm />
       </div>
-      <div className='bg-lilac border-whisper flex items-center rounded-lg border-[0.1em] border-solid p-[14px_28px_0_28px]'>
+      <div className='bg-lilac border-whisper flex items-center rounded-lg border-[0.1em] border-solid p-[14px_24px_0_24px]'>
         <NextImage
           alt='user logo'
           src={userLogo}
@@ -25,7 +25,7 @@ export default function Page() {
             Already have account?
           </p>
           <Link
-            href={'signin'}
+            href='/login'
             className='text-primary-100 text-sm font-bold leading-[1.21em] underline'
           >
             Sign in

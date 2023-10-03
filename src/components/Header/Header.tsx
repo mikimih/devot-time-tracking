@@ -11,9 +11,10 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from 'primereact/button';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/context/AuthContext';
 
 export default function Header() {
-  const router = useRouter();
+  const { user, logOut } = useAuth();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
 
   return (
@@ -31,64 +32,68 @@ export default function Header() {
             Tracking tool
           </span>
         </Link>
-        <Button
-          data-collapse-toggle='navbar-default'
-          type='button'
-          className='hover:bg-gray my-[34px] inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-white focus:outline-none focus:ring-2  focus:ring-gray-200 max-lg:my-[16px] md:hidden'
-          aria-controls='navbar-default'
-          aria-expanded='false'
-          onClick={() => setToggleMenu(!toggleMenu)}
-        >
-          <span className='sr-only'>Open main menu</span>
-          <svg
-            className='h-5 w-5'
-            aria-hidden='true'
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 17 14'
-          >
-            <path
-              stroke='currentColor'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth='2'
-              d='M1 1h15M1 7h15M1 13h15'
-            />
-          </svg>
-        </Button>
-        <div
-          className={cn(
-            !toggleMenu ? 'hidden' : 'flex',
-            ' w-full md:block md:min-h-full md:w-auto'
-          )}
-          id='navbar-default'
-        >
-          <ul className='flex flex-col rounded-lg md:min-h-full  md:flex-row '>
-            <li className='flex md:min-h-full'>
-              <HeaderNavLink
-                route='/'
-                name='Trackers'
-                icon={clockIcon}
-                customStyle='before:rounded-l-sm'
-              />
-            </li>
-            <li className='flex md:min-h-full'>
-              <HeaderNavLink
-                route='/history'
-                name='History'
-                icon={historyIcon}
-                customStyle='before:rounded-r-sm'
-              />
-            </li>
-            <li className='flex'>
-              <HeaderButton
-                name='Logout'
-                icon={turnOffIcon}
-                onClick={() => console.log('logout')}
-              />
-            </li>
-          </ul>
-        </div>
+        {user && (
+          <>
+            <Button
+              data-collapse-toggle='navbar-default'
+              type='button'
+              className='hover:bg-gray my-[34px] inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-white focus:outline-none focus:ring-2  focus:ring-gray-200 max-lg:my-[16px] md:hidden'
+              aria-controls='navbar-default'
+              aria-expanded='false'
+              onClick={() => setToggleMenu(!toggleMenu)}
+            >
+              <span className='sr-only'>Open main menu</span>
+              <svg
+                className='h-5 w-5'
+                aria-hidden='true'
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 17 14'
+              >
+                <path
+                  stroke='currentColor'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M1 1h15M1 7h15M1 13h15'
+                />
+              </svg>
+            </Button>
+            <div
+              className={cn(
+                !toggleMenu ? 'hidden' : 'flex',
+                ' w-full md:block md:min-h-full md:w-auto'
+              )}
+              id='navbar-default'
+            >
+              <ul className='flex flex-col rounded-lg md:min-h-full  md:flex-row '>
+                <li className='flex md:min-h-full'>
+                  <HeaderNavLink
+                    route='/'
+                    name='Trackers'
+                    icon={clockIcon}
+                    customStyle='before:rounded-l-sm'
+                  />
+                </li>
+                <li className='flex md:min-h-full'>
+                  <HeaderNavLink
+                    route='/history'
+                    name='History'
+                    icon={historyIcon}
+                    customStyle='before:rounded-r-sm'
+                  />
+                </li>
+                <li className='flex'>
+                  <HeaderButton
+                    name='Logout'
+                    icon={turnOffIcon}
+                    onClick={async () => await logOut()}
+                  />
+                </li>
+              </ul>
+            </div>
+          </>
+        )}
       </nav>
     </header>
   );
