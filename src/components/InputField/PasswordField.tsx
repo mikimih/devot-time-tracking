@@ -38,9 +38,9 @@ export default function PasswordField(props: PasswordFieldProp) {
             feedback={false}
             placeholder={placeholder}
             className={cn(
-              'placeholder-grey  relative text-lg leading-[17px]',
+              '[&>input]:placeholder-grey  relative text-lg leading-[17px]',
               '[&>input:focus]:placeholder-secondaryDark [&>input:focus]:outline-primary-50 [&>input]:w-full [&>input]:p-[12px_20px]',
-              'cursor-pointer [&>i]:absolute [&>i]:right-0 [&>i]:top-1/2 [&>i]:-translate-x-1/2 [&>i]:-translate-y-1/2 [&>i]:transform',
+              '[&>i]:absolute [&>i]:right-0 [&>i]:top-1/2 [&>i]:-translate-x-1/2 [&>i]:-translate-y-1/2 [&>i]:transform [&>i]:cursor-pointer',
               '[&>i>svg]:h-[20px] [&>i>svg]:w-[20px]',
               errors[name] && 'border-alert rounded border-[2px] border-solid'
             )}

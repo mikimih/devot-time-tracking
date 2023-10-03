@@ -1,19 +1,89 @@
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 import { InputText } from 'primereact/inputtext';
 import { cn } from '@/lib/utils';
+import { ChangeEventHandler, MouseEventHandler, ReactElement } from 'react';
+import { Button } from 'primereact/button';
+import NextImage from '@/components/NextImage';
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 
-interface TextInputFieldProp {
+interface TextInputFieldProps {
   name: string;
   placeholder: string;
-  errors: FieldErrors;
+  errors?: FieldErrors;
   control?: Control<any>;
   customStyle?: string;
+  value?: string;
+  label?: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  iconRight?: StaticImport;
+  onIconClick?: MouseEventHandler;
 }
-export default function InputField(props: TextInputFieldProp) {
-  const { placeholder, errors, name, control, customStyle } = props;
+interface InputProps {
+  id: string;
+  value?: string;
+  placeholder: string;
+  hasErrors?: boolean;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  iconRight?: StaticImport;
+  onIconClick?: MouseEventHandler;
+}
+
+const Input = (props: InputProps) => {
+  const {
+    id,
+    value,
+    placeholder,
+    hasErrors,
+    iconRight,
+    onIconClick,
+    onChange,
+  } = props;
+  return (
+    <div className='relative'>
+      <InputText
+        id={id}
+        value={value}
+        placeholder={placeholder}
+        className={cn(
+          'placeholder-grey focus:placeholder-secondaryDark focus:outline-primary-50 p-[9px_20px] text-lg leading-[17px]',
+          hasErrors && 'border-alert rounded border-[2px] border-solid'
+        )}
+        onChange={onChange}
+      />
+      {onIconClick && iconRight && (
+        <Button
+          className={cn(
+            'absolute',
+            'absolute right-0 top-1/2 -translate-x-1/2 -translate-y-1/2 transform'
+          )}
+          onClick={onIconClick}
+        >
+          <NextImage
+            src={iconRight}
+            alt='clear search'
+            width={24}
+            height={24}
+          />
+        </Button>
+      )}
+    </div>
+  );
+};
+export default function InputField(props: TextInputFieldProps) {
+  const {
+    placeholder,
+    errors,
+    name,
+    control,
+    label,
+    customStyle,
+    value,
+    onChange,
+    ...rest
+  } = props;
 
   const getFormErrorMessage = () => {
-    return errors[name] ? (
+    return errors && errors[name] ? (
       <small className='text-alert'>{`${errors[name]?.message}`}</small>
     ) : (
       <small>&nbsp;</small>
@@ -21,29 +91,50 @@ export default function InputField(props: TextInputFieldProp) {
   };
 
   return (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field, fieldState }) => (
+    <>
+      {control && (
+        <Controller
+          name={name}
+          control={control}
+          render={({ field, fieldState }) => (
+            <div
+              className={cn(
+                'card justify-content-center flex flex-col',
+                customStyle
+              )}
+            >
+              <Input
+                id={field.name}
+                value={field.value}
+                placeholder={placeholder}
+                hasErrors={!!(errors && errors[name])}
+                onChange={(e) => field.onChange(e.target.value)}
+                {...rest}
+              />
+              {getFormErrorMessage()}
+            </div>
+          )}
+        />
+      )}
+      {!control && (
         <div
           className={cn(
             'card justify-content-center flex flex-col',
             customStyle
           )}
         >
-          <InputText
-            id={field.name}
-            value={field.value}
+          <label htmlFor={name} className='text-grey m-1 text-sm/[1.21em]'>
+            {name}
+          </label>
+          <Input
+            id={name}
+            value={value}
             placeholder={placeholder}
-            className={cn(
-              'placeholder-grey focus:placeholder-secondaryDark focus:outline-primary-50 p-[12px_20px] text-lg leading-[17px]',
-              errors[name] && 'border-alert rounded border-[2px] border-solid'
-            )}
-            onChange={(e) => field.onChange(e.target.value)}
+            onChange={onChange}
+            {...rest}
           />
-          {getFormErrorMessage()}
         </div>
       )}
-    />
+    </>
   );
 }

@@ -6,6 +6,7 @@ import PageTitle from '@/components/PageTitle';
 import dayjs from 'dayjs';
 import NextImage from '@/components/NextImage';
 import dateIcon from '../../../public/svg/calendar.svg';
+import TrackerHistoryTableWrapper from '@/components/Table/TrackerHistoryTableWrapper';
 function Page() {
   const { user } = useAuthContext();
   const router = useRouter();
@@ -14,7 +15,12 @@ function Page() {
   //   if (user == null) router.push('/');
   // }, [user]);
 
-  return <PageTitle title={`Trackers History`} />;
+  return (
+    <>
+      <PageTitle title={`Trackers History`} />
+      <TrackerHistoryTableWrapper />
+    </>
+  );
 }
 
 export default Page;

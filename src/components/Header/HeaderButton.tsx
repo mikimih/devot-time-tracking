@@ -11,13 +11,20 @@ function HeaderNavLink(props: HeaderNavLinkProps) {
   const { name, icon, onClick } = props;
   return (
     <Button
-      className='text-lilac text-[15px] font-bold leading-[17px]'
+      className='text-lilac ml-[50px] w-full text-[15px] font-bold leading-[17px] hover:opacity-90  max-md:ml-0 max-md:p-4'
       onClick={onClick}
       type='button'
     >
       {icon ? (
-        <div className='flex items-center pl-[50px]'>
-          <NextImage src={icon} alt={name} height={24} width={24} /> {name}
+        <div className='flex items-center'>
+          <NextImage
+            src={icon}
+            alt={name}
+            height={24}
+            width={24}
+            className={'mr-2'}
+          />{' '}
+          {name}
         </div>
       ) : (
         <>{name}</>

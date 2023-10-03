@@ -10,7 +10,10 @@ function PageTitle(props: PageTitleProps) {
   const { title, customStyle, icon } = props;
   return (
     <div
-      className={cn(customStyle, 'mb-[82px] flex items-center [&>figure]:mr-4')}
+      className={cn(
+        customStyle,
+        'mb-[32px] flex items-center md:mb-[82px] [&>figure]:mr-4'
+      )}
     >
       {icon}
       <h1

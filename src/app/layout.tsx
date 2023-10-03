@@ -5,6 +5,7 @@ import { AuthContextProvider } from '@/context/AuthContext';
 import { siteConfig } from '@/constant/config';
 import { PrimeReactProvider } from 'primereact/api';
 import Tailwind from 'primereact/passthrough/tailwind';
+import 'primeicons/primeicons.css';
 import { ReactNode } from 'react';
 
 const nunito = Nunito_Sans({
