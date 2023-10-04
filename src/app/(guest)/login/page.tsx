@@ -25,7 +25,7 @@ export default function Page() {
             Need an account?
           </p>
           <Link
-            href={'signup'}
+            href='signup'
             className='text-primary-100 text-sm font-bold leading-[1.21em] underline'
           >
             Register here

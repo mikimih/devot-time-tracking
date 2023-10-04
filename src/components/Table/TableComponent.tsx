@@ -25,7 +25,7 @@ const templatePagination = {
     return (
       <Button
         type='button'
-        className={'mr-[2px] p-[10px]'}
+        className='mr-[2px] p-[10px]'
         onClick={options.onClick}
         disabled={options.disabled}
       >
@@ -40,7 +40,7 @@ const templatePagination = {
     return (
       <Button
         type='button'
-        className={'mr-[2px]  p-[10px]'}
+        className='mr-[2px]  p-[10px]'
         onClick={options.onClick}
         disabled={options.disabled}
       >
@@ -55,7 +55,7 @@ const templatePagination = {
     return (
       <Button
         type='button'
-        className={'mr-[2px]  p-[10px]'}
+        className='mr-[2px]  p-[10px]'
         onClick={options.onClick}
         disabled={options.disabled}
       >
@@ -70,7 +70,7 @@ const templatePagination = {
     return (
       <Button
         type='button'
-        className={'mr-[2px]  p-[10px]'}
+        className='mr-[2px]  p-[10px]'
         onClick={options.onClick}
         disabled={options.disabled}
       >

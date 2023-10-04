@@ -2,12 +2,15 @@ import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { Toast } from 'primereact/toast';
 import { toastStyle } from '@/components/Toast/toastStyle';
 
-type Props = {};
+type Props = {
+  customStyle?: string;
+};
 export type ToastComponentProps = {
   showError: (errorMessage: string) => void;
 };
 
-const ToastComponent = forwardRef<ToastComponentProps, Props>((_, ref: any) => {
+const ToastComponent = forwardRef<ToastComponentProps, Props>((props, ref) => {
+  const { customStyle } = props;
   const toast = useRef<Toast>(null);
   useImperativeHandle(ref, () => ({
     showError(errorMessage: string) {
@@ -20,7 +23,7 @@ const ToastComponent = forwardRef<ToastComponentProps, Props>((_, ref: any) => {
     },
   }));
 
-  return <Toast ref={toast} pt={toastStyle} />;
+  return <Toast ref={toast} pt={toastStyle} className={customStyle} />;
 });
 
 export default ToastComponent;

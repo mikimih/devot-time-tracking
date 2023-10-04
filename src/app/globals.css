@@ -3,20 +3,22 @@
 @tailwind utilities;
 
 :root {
-    --color-primary: #FF6D00;
-    --color-primary-dark: #FF5722;
-    --color-secondary: #181846;
-    --color-secondary-dark: #0C0D25;
-    --color-ghost: #C4C5D7;
-    --color-gray: #5F6B8A;
-    --color-white-whisper: #ECEDF5;
-    --color-white-lilac: #F9F9FD;
-    --color-white: #FFFFFF;
-    --color-alert: #D0342C;
+  --color-primary: #ff6d00;
+  --color-primary-dark: #ff5722;
+  --color-secondary: #181846;
+  --color-secondary-dark: #0c0d25;
+  --color-ghost: #c4c5d7;
+  --color-gray: #5f6b8a;
+  --color-white-whisper: #ecedf5;
+  --color-white-lilac: #f9f9fd;
+  --color-white: #ffffff;
+  --color-alert: #d0342c;
 }
 
-:root, body, html {
-    height: 100%;
+:root,
+body,
+html {
+  height: 100%;
 }
 
 img {
@@ -29,23 +31,23 @@ html {
   font-size: 100%;
 }
 @media (prefers-reduced-motion: no-preference) {
-    html {
-        scroll-behavior: smooth;
-    }
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
   color: rgb(var(--color-white));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 button {
   color: inherit;
 }
 
-a, button {
+a,
+button {
   touch-action: manipulation;
 }
 
@@ -56,12 +58,13 @@ svg {
   pointer-events: none;
 }
 
-iframe, video {
+iframe,
+video {
   height: 100%;
-  width: 100%
+  width: 100%;
 }
 
 * {
- padding: 0;
- margin: 0;
+  padding: 0;
+  margin: 0;
 }

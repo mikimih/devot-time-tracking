@@ -4,7 +4,7 @@ import TrackerHistoryTableWrapper from '@/components/Table/TrackerHistoryTableWr
 export default function Page() {
   return (
     <>
-      <PageTitle title={`Trackers History`} />
+      <PageTitle title='Trackers History' />
       <TrackerHistoryTableWrapper />
     </>
   );

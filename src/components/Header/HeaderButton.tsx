@@ -24,7 +24,7 @@ export default function HeaderNavLink(props: HeaderNavLinkProps) {
             alt={name}
             height={24}
             width={24}
-            className={'mr-2'}
+            className='mr-2'
           />{' '}
           {name}
         </div>

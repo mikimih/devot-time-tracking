@@ -13,7 +13,6 @@ import duration from 'dayjs/plugin/duration';
 import { Input } from '@/components/InputField/InputField';
 import { DataTableRowEditCompleteEvent } from 'primereact/datatable';
 
-interface TrackerTableWrapperProps {}
 dayjs.extend(duration);
 
 const dateBodyTemplate = (rowData: Task) => {
@@ -31,8 +30,7 @@ const textEditor = (options: any) => {
   );
 };
 
-export default function TrackerTableWrapper(props: TrackerTableWrapperProps) {
-  const {} = props;
+export default function TrackerTableWrapper() {
   const { mutate: createTask } = useCreateUserTask();
   const [activeUserTasks, setActiveUserTasks] = useState<Task[]>([]);
   const { data, status, isLoading } = useActiveUserTasks();
@@ -46,8 +44,8 @@ export default function TrackerTableWrapper(props: TrackerTableWrapperProps) {
     return <div>Loading...</div>;
   }
   const onRowEditComplete = (e: DataTableRowEditCompleteEvent) => {
-    let _data = [...activeUserTasks];
-    let { newData, index } = e;
+    const _data = [...activeUserTasks];
+    const { newData, index } = e;
 
     _data[index] = newData as Task;
 
@@ -58,8 +56,8 @@ export default function TrackerTableWrapper(props: TrackerTableWrapperProps) {
     <div className='flex flex-col'>
       <div className='mb-[36px] flex justify-end'>
         <ButtonComponent
-          type={'button'}
-          label={'Start new timer'}
+          type='button'
+          label='Start new timer'
           customStyle='mr-[15px] py-[6px]'
           onClick={createTask}
           icon={
@@ -73,8 +71,8 @@ export default function TrackerTableWrapper(props: TrackerTableWrapperProps) {
           }
         />
         <ButtonComponent
-          type={'button'}
-          label={'Stop all'}
+          type='button'
+          label='Stop all'
           secondary={true}
           customStyle='py-[6px]'
           icon={

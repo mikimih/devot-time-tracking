@@ -3,6 +3,7 @@ import { collection, doc, getDocs, query, where } from 'firebase/firestore';
 import { collections } from '@/firebase/firestore/types';
 import getFirebaseAdminApp from '@/firebase/getFirebaseAdminApp';
 import { headers } from 'next/headers';
+import { QueryDocumentSnapshot } from '@firebase/firestore';
 
 export async function GET() {
   try {
@@ -25,12 +26,14 @@ export async function GET() {
         where('isFinished', '==', false)
       )
     );
-    const activeUserTasks = userTasksRef.docs.map((val: any) => {
-      return {
-        id: val.id,
-        ...val.data(),
-      };
-    });
+    const activeUserTasks = userTasksRef.docs.map(
+      (val: QueryDocumentSnapshot) => {
+        return {
+          id: val.id,
+          ...val.data(),
+        };
+      }
+    );
 
     return Response.json({ data: activeUserTasks });
   } catch (error) {

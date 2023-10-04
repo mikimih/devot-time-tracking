@@ -1,6 +1,5 @@
 'use client';
 import { ChangeEvent, useState } from 'react';
-import TableComponent from '@/components/Table/TableComponent';
 import { DataTableFilterMeta } from 'primereact/datatable';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import { InputField } from '@/components/InputField/InputField';
@@ -8,11 +7,7 @@ import closeIcon from '../../../public/svg/close.svg';
 import DatePickerField from '@/components/DatePicker/DatePickerField';
 import dayjs from 'dayjs';
 
-interface TrackerHistoryTableWrapperProps {}
-export default function TrackerHistoryTableWrapper(
-  props: TrackerHistoryTableWrapperProps
-) {
-  const {} = props;
+export default function TrackerHistoryTableWrapper() {
   const [filters, setFilters] = useState<DataTableFilterMeta>({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     name: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -27,7 +22,7 @@ export default function TrackerHistoryTableWrapper(
   const [globalFilterValue, setGlobalFilterValue] = useState('');
   const onGlobalFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    let _filters = { ...filters };
+    const _filters = { ...filters };
 
     // @ts-ignore
     _filters['global'].value = value;
@@ -45,7 +40,7 @@ export default function TrackerHistoryTableWrapper(
           name='Start date'
           maxDate={dayjs().toDate()}
           onChange={(value: Date) => {
-            let _filters = { ...filters };
+            const _filters = { ...filters };
             console.log(value);
             // @ts-ignore
             filters.date.constraints[0].value = value;
@@ -58,7 +53,7 @@ export default function TrackerHistoryTableWrapper(
           name='End date'
           maxDate={dayjs().toDate()}
           onChange={(value: Date) => {
-            let _filters = { ...filters };
+            const _filters = { ...filters };
             console.log(value);
             // @ts-ignore
             filters.date.constraints[1].value = value;

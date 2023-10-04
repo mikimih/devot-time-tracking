@@ -53,14 +53,14 @@ export default function SignInForm() {
     <form onSubmit={handleSubmit(onSubmit)} className='flex w-full flex-col'>
       <ToastComponent ref={toastRef} />
       <InputField
-        placeholder={'Username'}
+        placeholder='Username'
         name='displayName'
         errors={errors}
         control={control}
         customStyle='mb-[30px]'
       />
       <PasswordField
-        placeholder={'Password'}
+        placeholder='Password'
         name='password'
         errors={errors}
         control={control}
