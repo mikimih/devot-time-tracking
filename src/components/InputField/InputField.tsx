@@ -27,9 +27,10 @@ interface InputProps {
   onChange?: ChangeEventHandler<HTMLInputElement>;
   iconRight?: StaticImport;
   onIconClick?: MouseEventHandler;
+  customInputStyle?: string;
 }
 
-const Input = (props: InputProps) => {
+export const Input = (props: InputProps) => {
   const {
     id,
     value,
@@ -38,6 +39,7 @@ const Input = (props: InputProps) => {
     iconRight,
     onIconClick,
     onChange,
+    customInputStyle,
   } = props;
   return (
     <div className='relative'>
@@ -48,7 +50,8 @@ const Input = (props: InputProps) => {
         className={cn(
           'placeholder-gray focus:placeholder-secondaryDark focus:outline-primary-50 p-[9px_20px] text-lg leading-[0.94em]',
           hasErrors && 'border-alert rounded border-[2px] border-solid',
-          !iconRight && 'w-full'
+          !iconRight && 'w-full',
+          customInputStyle
         )}
         onChange={onChange}
       />
@@ -71,7 +74,7 @@ const Input = (props: InputProps) => {
     </div>
   );
 };
-export default function InputField(props: TextInputFieldProps) {
+export const InputField = (props: TextInputFieldProps) => {
   const {
     placeholder,
     errors,
@@ -139,4 +142,4 @@ export default function InputField(props: TextInputFieldProps) {
       )}
     </>
   );
-}
+};

@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from 'react';
 import TableComponent from '@/components/Table/TableComponent';
 import { DataTableFilterMeta } from 'primereact/datatable';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
-import InputField from '@/components/InputField/InputField';
+import { InputField } from '@/components/InputField/InputField';
 import closeIcon from '../../../public/svg/close.svg';
 import DatePickerField from '@/components/DatePicker/DatePickerField';
 import dayjs from 'dayjs';
@@ -74,7 +74,7 @@ export default function TrackerHistoryTableWrapper(
           onIconClick={() => setGlobalFilterValue('')}
         />
       </div>
-      <TableComponent filters={filters} />
+      {/*<TableComponent filters={filters} />*/}
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { PrimeReactProvider } from 'primereact/api';
 import Tailwind from 'primereact/passthrough/tailwind';
 import 'primeicons/primeicons.css';
 import { ReactNode } from 'react';
+import QueryProvider from '@/components/QueryProvider';
 
 const nunito = Nunito_Sans({
   subsets: ['latin'],
@@ -34,7 +35,6 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     siteName: siteConfig.title,
-    images: [`${siteConfig.url}/images/og.jpg`],
     type: 'website',
     locale: 'en_US',
   },
@@ -42,7 +42,6 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/images/og.jpg`],
   },
   authors: [
     {
@@ -55,9 +54,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en'>
       <body className={`${nunito.className} h-full`}>
-        <PrimeReactProvider value={{ unstyled: true, pt: Tailwind }}>
-          <AuthContextProvider>{children}</AuthContextProvider>
-        </PrimeReactProvider>
+        <QueryProvider>
+          <PrimeReactProvider value={{ unstyled: true, pt: Tailwind }}>
+            <AuthContextProvider>{children}</AuthContextProvider>
+          </PrimeReactProvider>
+        </QueryProvider>
       </body>
     </html>
   );

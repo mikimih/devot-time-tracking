@@ -1,24 +1,29 @@
 'use client';
-import { createContext, useContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import {
   onAuthStateChanged,
   signOut,
   signInWithCustomToken,
 } from 'firebase/auth';
 import { auth } from '@/firebase/config';
-import axios, { AxiosError } from 'axios';
-import { Skeleton } from 'primereact/skeleton';
+import { AxiosError } from 'axios';
+import { useLogIn, useSignUp } from '@/lib/query-hook';
+import { SignUpFormData } from '@/components/Forms/SignUpForm';
 
 const AuthContext = createContext({});
 
 export const useAuth = () => useContext<any>(AuthContext);
 
-export const AuthContextProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<any>(null);
+  const { mutateAsync: logInMutation } = useLogIn();
+  const { mutateAsync: signUpMutation } = useSignUp();
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -37,21 +42,10 @@ export const AuthContextProvider = ({
 
     return () => unsubscribe();
   }, []);
-  type tokenRes = {
-    token: string;
-  };
 
-  const signUp = async (
-    email: string,
-    password: string,
-    displayName: string
-  ) => {
+  const signUp = async (data: SignUpFormData) => {
     try {
-      const res = await axios.post<tokenRes>('/api/createUserAndGetToken', {
-        email,
-        password,
-        displayName,
-      });
+      const res = await signUpMutation(data);
       const { token } = res.data;
       const userCredential = await signInWithCustomToken(auth, token);
       setUser(userCredential.user);
@@ -65,10 +59,7 @@ export const AuthContextProvider = ({
 
   const logIn = async (displayName: string, password: string) => {
     try {
-      const res = await axios.post<tokenRes>('/api/signInWithUsername', {
-        password,
-        displayName,
-      });
+      const res = await logInMutation({ displayName, password });
       const { token } = res.data;
       const userCredential = await signInWithCustomToken(auth, token);
       setUser(userCredential.user);
@@ -87,7 +78,7 @@ export const AuthContextProvider = ({
 
   return (
     <AuthContext.Provider value={{ user, signUp, logIn, logOut }}>
-      {loading ? <Skeleton height='100vh' /> : children}
+      {loading ? null : children}
     </AuthContext.Provider>
   );
 };

@@ -2,7 +2,7 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import InputField from '@/components/InputField/InputField';
+import { InputField } from '@/components/InputField/InputField';
 import PasswordField from '@/components/InputField/PasswordField';
 import ButtonComponent from '@/components/Button/ButtonComponent';
 import { useAuth } from '@/context/AuthContext';
@@ -23,7 +23,7 @@ const defaultValues = {
   password: '',
 };
 
-interface SignInFormData {
+export interface SignInFormData {
   displayName: string;
   password: string;
 }

@@ -10,12 +10,26 @@ export const tableComponentStyle: DataTablePassThroughOptions = {
       'bg-lilac font-bold text-base md:text-lg leading-[0.94em] text-secondaryDark'
     ),
   }),
+  paginator: {
+    root: () => ({
+      className: classNames('mt-[32px]'),
+    }),
+  },
+
   column: {
     // @ts-ignore
     headercell: () => ({
       className: classNames(
         'pt-[12px] pb-[6px] pl-[10px] md:pt-[32px] md:pb-[20px] md:pl-[30px] border-y-[0.1em] border-y-solid border-y-whisper'
       ),
+    }),
+    emptyMessage: () => ({
+      className: classNames(
+        'font-bold !text-2xl text-secondaryDark text-center [&>td]:py-[8px]'
+      ),
+    }),
+    roweditorsavebutton: () => ({
+      className: classNames('mx-2'),
     }),
     bodycell: () => ({
       className: classNames(
