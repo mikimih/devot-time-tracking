@@ -1,7 +1,7 @@
 import Header from '@/components/Header/Header';
 import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import ProtectedRoute from '@/components/ProtectionRote/ProtectedRoute';
+import ProtectedRoute from '@/components/ProtectionRoute/ProtectedRoute';
 
 export default function UserLayout({ children }: { children: ReactNode }) {
   return (

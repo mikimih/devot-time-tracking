@@ -93,15 +93,24 @@ const templatePagination = {
 interface TableComponentProps {
   filters?: DataTableFilterMeta;
   data: any;
-  setData: (data: any) => void;
+  setData?: (data: any) => void;
   children?: ReactNode;
   ch?: ReactNode;
   emptyMessage?: string;
   onRowEditComplete?: (e: DataTableRowEditCompleteEvent) => void;
+  onRowEditInit?: () => void;
+  onRowEditCancel?: () => void;
 }
 export default function TableComponent(props: TableComponentProps) {
-  const { filters, data, setData, children, onRowEditComplete, emptyMessage } =
-    props;
+  const {
+    filters,
+    data,
+    children,
+    onRowEditComplete,
+    onRowEditCancel,
+    onRowEditInit,
+    emptyMessage,
+  } = props;
 
   return (
     <div className='card'>
@@ -114,10 +123,12 @@ export default function TableComponent(props: TableComponentProps) {
         paginatorTemplate={templatePagination}
         currentPageReportTemplate='{currentPage}'
         emptyMessage={emptyMessage}
-        rows={10}
+        rows={5}
         editMode='row'
         dataKey='id'
         onRowEditComplete={onRowEditComplete}
+        onRowEditInit={onRowEditInit}
+        onRowEditCancel={onRowEditCancel}
         pt={tableComponentStyle}
       >
         {children}

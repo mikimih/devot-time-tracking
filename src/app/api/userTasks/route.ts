@@ -23,14 +23,15 @@ export async function POST() {
       doc(db, collections.USERS, userUid),
       collections.TASK
     );
-    await addDoc(userRef, {
+    const emptyUserData = {
       description: '',
       createdAt: new Date(),
       duration: 0,
-      isFinished: false,
-    });
+      isStopped: false,
+    };
+    const userTask = await addDoc(userRef, emptyUserData);
 
-    return Response.json({});
+    return Response.json({ id: userTask.id, ...emptyUserData });
   } catch (error) {
     return Response.json(
       { message: error || 'Error while creating new task.' },

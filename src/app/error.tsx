@@ -19,10 +19,10 @@ export default function Error({
     <main>
       <section className='bg-white'>
         <div className='layout flex min-h-screen flex-col items-center justify-center text-center text-black'>
-          <h1 className='mt-8 text-4xl md:text-6xl'>
+          <h1 className='mt-8 text-3xl md:text-4xl'>
             Oops, something went wrong!
           </h1>
-          <Button onClick={reset} className='mt-4'>
+          <Button onClick={reset} className='mt-4 text-xl'>
             Try again
           </Button>
         </div>

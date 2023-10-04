@@ -13,9 +13,17 @@ export interface Task {
   description: string;
   createdAt: Date;
   duration: number;
-  isFinished: boolean;
+  isStopped: boolean;
   tracked?: TrackedTask[];
 }
+export interface UpdateTaskType {
+  id: string;
+  description?: string;
+  duration?: number;
+  isStopped?: boolean;
+  tracked?: TrackedTask[];
+}
+
 export interface TrackedTask {
   date: Date;
   timeTrack: Timestamp;

@@ -23,7 +23,7 @@ export async function GET() {
     const userTasksRef = await getDocs(
       query(
         collection(doc(db, collections.USERS, userUid), collections.TASK),
-        where('isFinished', '==', false)
+        where('isStopped', '==', false)
       )
     );
     const activeUserTasks = userTasksRef.docs.map(

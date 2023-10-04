@@ -1,7 +1,7 @@
 import Header from '@/components/Header/Header';
 import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import UnprotectedRoute from '@/components/ProtectionRote/UnprotectedRoute';
+import UnprotectedRoute from '@/components/ProtectionRoute/UnprotectedRoute';
 
 export default function GuestLayout({ children }: { children: ReactNode }) {
   return (
