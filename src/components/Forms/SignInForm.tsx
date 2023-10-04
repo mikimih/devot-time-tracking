@@ -6,7 +6,7 @@ import InputField from '@/components/InputField/InputField';
 import PasswordField from '@/components/InputField/PasswordField';
 import ButtonComponent from '@/components/Button/ButtonComponent';
 import { useAuth } from '@/context/AuthContext';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import ToastComponent, {
   ToastComponentProps,
 } from '@/components/Toast/ToastComponent';
@@ -31,6 +31,7 @@ interface SignInFormData {
 export default function SignInForm() {
   const { logIn } = useAuth();
   const toastRef = useRef<ToastComponentProps>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const {
     handleSubmit,
     control,
@@ -41,12 +42,13 @@ export default function SignInForm() {
   });
 
   const onSubmit = async (data: any) => {
+    setLoading(true);
     const { errorMessage } = await logIn(data.displayName, data.password);
+    setLoading(false);
     if (errorMessage) {
       toastRef.current?.showError(errorMessage);
     }
   };
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='flex w-full flex-col'>
       <ToastComponent ref={toastRef} />
@@ -64,7 +66,7 @@ export default function SignInForm() {
         control={control}
         customStyle='mb-[50px]'
       />
-      <ButtonComponent type='submit' label='Login' />
+      <ButtonComponent type='submit' label='Login' isLoading={loading} />
     </form>
   );
 }

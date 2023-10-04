@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import {
   onAuthStateChanged,
   signOut,
@@ -7,6 +7,7 @@ import {
 } from 'firebase/auth';
 import { auth } from '@/firebase/config';
 import axios, { AxiosError } from 'axios';
+import { Skeleton } from 'primereact/skeleton';
 
 const AuthContext = createContext({});
 
@@ -54,11 +55,10 @@ export const AuthContextProvider = ({
       const { token } = res.data;
       const userCredential = await signInWithCustomToken(auth, token);
       setUser(userCredential.user);
+      return {};
     } catch (error) {
       if (error instanceof AxiosError) {
-        console.error({ message: error.message });
-
-        return { errorMessage: error.message };
+        return { errorMessage: error.response?.data.message || error.message };
       }
     }
   };
@@ -72,10 +72,10 @@ export const AuthContextProvider = ({
       const { token } = res.data;
       const userCredential = await signInWithCustomToken(auth, token);
       setUser(userCredential.user);
+      return {};
     } catch (error) {
       if (error instanceof AxiosError) {
-        console.error({ message: error.message });
-        return { errorMessage: error.message };
+        return { errorMessage: error.response?.data.message || error.message };
       }
     }
   };
@@ -87,7 +87,7 @@ export const AuthContextProvider = ({
 
   return (
     <AuthContext.Provider value={{ user, signUp, logIn, logOut }}>
-      {loading ? null : children}
+      {loading ? <Skeleton height='100vh' /> : children}
     </AuthContext.Provider>
   );
 };

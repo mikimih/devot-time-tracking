@@ -6,16 +6,23 @@ import clockIcon from '../../../public/svg/clock.svg';
 import historyIcon from '../../../public/svg/history.svg';
 import turnOffIcon from '../../../public/svg/turn-off.svg';
 import HeaderButton from '@/components/Header/HeaderButton';
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from 'primereact/button';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/context/AuthContext';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const { user, logOut } = useAuth();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (toggleMenu) {
+      setToggleMenu(false);
+    }
+  }, [pathname]);
 
   return (
     <header className='bg-secondary rounded-[0_0_22px_22px] px-[Clamp(1rem,4.5vw,45px)]'>

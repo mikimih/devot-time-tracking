@@ -1,4 +1,5 @@
-import React, { ChangeEvent, useState } from 'react';
+'use client';
+import { ChangeEvent, useState } from 'react';
 import TableComponent from '@/components/Table/TableComponent';
 import { DataTableFilterMeta } from 'primereact/datatable';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';

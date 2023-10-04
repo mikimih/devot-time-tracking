@@ -25,7 +25,7 @@ export default function Page() {
             Already have account?
           </p>
           <Link
-            href='/login'
+            href={'/login'}
             className='text-primary-100 text-sm font-bold leading-[1.21em] underline'
           >
             Sign in

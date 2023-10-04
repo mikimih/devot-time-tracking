@@ -6,7 +6,7 @@ import InputField from '@/components/InputField/InputField';
 import PasswordField from '@/components/InputField/PasswordField';
 import ButtonComponent from '@/components/Button/ButtonComponent';
 import { useAuth } from '@/context/AuthContext';
-import React, { useRef } from 'react';
+import { useRef, useState } from 'react';
 import ToastComponent, {
   ToastComponentProps,
 } from '@/components/Toast/ToastComponent';
@@ -42,6 +42,7 @@ export type SignUpFormData = {
 export default function SignUpForm() {
   const toastRef = useRef<ToastComponentProps>(null);
   const { signUp } = useAuth();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     handleSubmit,
@@ -52,11 +53,13 @@ export default function SignUpForm() {
     resolver: yupResolver(schema),
   });
   const onSubmit = async (data: SignUpFormData) => {
+    setLoading(true);
     const { errorMessage } = await signUp(
       data.email,
       data.password,
       data.displayName
     );
+    setLoading(false);
     if (errorMessage) {
       toastRef.current?.showError(errorMessage);
     }
@@ -86,7 +89,7 @@ export default function SignUpForm() {
         control={control}
         customStyle='mb-[24px]'
       />
-      <ButtonComponent type='submit' label='Register' />
+      <ButtonComponent type='submit' label='Register' isLoading={loading} />
     </form>
   );
 }

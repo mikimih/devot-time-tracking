@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
     --color-primary: #FF6D00;
     --color-primary-dark: #FF5722;
     --color-secondary: #181846;
@@ -38,13 +35,7 @@ html {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: rgb(var(--color-white));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 

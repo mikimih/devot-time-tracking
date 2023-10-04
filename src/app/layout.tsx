@@ -55,11 +55,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en'>
       <body className={`${nunito.className} h-full`}>
-        <AuthContextProvider>
-          <PrimeReactProvider value={{ unstyled: true, pt: Tailwind }}>
-            {children}
-          </PrimeReactProvider>
-        </AuthContextProvider>
+        <PrimeReactProvider value={{ unstyled: true, pt: Tailwind }}>
+          <AuthContextProvider>{children}</AuthContextProvider>
+        </PrimeReactProvider>
       </body>
     </html>
   );
