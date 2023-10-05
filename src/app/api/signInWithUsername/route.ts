@@ -2,14 +2,13 @@ import bcrypt from 'bcrypt';
 import { db } from '@/firebase/config';
 import { getDocs, query, collection, where, limit } from 'firebase/firestore';
 import { collections, User } from '@/firebase/firestore/types';
-import getFirebaseAdminApp from '@/firebase/getFirebaseAdminApp';
+import { auth } from '@/firebase/getFirebaseAdminApp';
 import {
   QueryDocumentSnapshot,
   SnapshotOptions,
   DocumentData,
 } from 'firebase/firestore';
 
-getFirebaseAdminApp();
 const userConverter = {
   toFirestore(user: User): DocumentData {
     return user as User;
@@ -23,7 +22,6 @@ const userConverter = {
   },
 };
 export async function POST(req: Request) {
-  const auth = getFirebaseAdminApp().auth();
   type LoginData = {
     password: string;
     displayName: string;
