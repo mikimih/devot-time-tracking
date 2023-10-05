@@ -4,9 +4,6 @@
 
 This app, TimeDevotion, was born as a result of the 'Devōt Challenge', a technical assignment I was given during my job application process with Devōt for Frontend Developer position.
 
-### Deployed version
-
-This repository is deployed on url: <a href="https://main.d3a0iy3msooami.amplifyapp.com" target="_blank">TimeDevotion</a>
 
 ### Packages
 
