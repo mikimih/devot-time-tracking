@@ -17,7 +17,7 @@ const nunito = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://localhost:3000'),
+  metadataBase: new URL('https://main.d3a0iy3msooami.amplifyapp.com'),
   title: {
     default: siteConfig.title,
     template: `%s | ${siteConfig.title}`,
