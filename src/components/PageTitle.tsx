@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { cn } from '@/lib/utils';
 
 interface PageTitleProps {
-  title: string;
+  title: string | ReactElement;
   customStyle?: string;
   icon?: ReactElement;
 }

@@ -2,7 +2,7 @@ import { useCallback, useState, useEffect } from 'react';
 
 const interval =
   (delay = 0) =>
-  (callback: any) =>
+  (callback: () => void) =>
     useEffect(() => {
       const id = setInterval(callback, delay);
 

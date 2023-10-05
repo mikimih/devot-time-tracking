@@ -1,7 +1,13 @@
 import { headers } from 'next/headers';
 import getFirebaseAdminApp from '@/firebase/getFirebaseAdminApp';
 import { collections, UpdateTaskType } from '@/firebase/firestore/types';
-import { collection, deleteDoc, doc, updateDoc } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from 'firebase/firestore';
 import { db } from '@/firebase/config';
 
 export async function PATCH(req: Request) {
@@ -18,7 +24,7 @@ export async function PATCH(req: Request) {
     const decodedToken = await getFirebaseAdminApp()
       .auth()
       .verifyIdToken(authToken);
-    const { id, ...rest } = (await req.json()) as UpdateTaskType;
+    const { id, tracked, ...rest } = (await req.json()) as UpdateTaskType;
 
     const userUid = decodedToken.uid;
     const userTaskRef = doc(
@@ -26,6 +32,13 @@ export async function PATCH(req: Request) {
       id
     );
     await updateDoc(userTaskRef, { ...rest });
+    if (tracked) {
+      const userTrackedTaskRef = collection(
+        userTaskRef,
+        collections.TRACKED_TASK
+      );
+      await addDoc(userTrackedTaskRef, tracked);
+    }
 
     return Response.json({});
   } catch (error) {
@@ -36,7 +49,7 @@ export async function PATCH(req: Request) {
   }
 }
 
-export async function DELETE(req: Request, { params }: any) {
+export async function DELETE(_req: Request, { params }: any) {
   try {
     const authToken = (headers().get('authorization') || '')
       .split('Bearer ')

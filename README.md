@@ -6,7 +6,28 @@ This app, TimeDevotion, was born as a result of the 'Devōt Challenge', a techni
 
 ### Deployed version
 
-This repository is deployed:
+This repository is deployed on url: <a href="https://www.google.com/" target="_blank">Google</a>
+
+### Packages
+
+This repository is packed with:
+
+<ul>
+<li>React 18</li>
+<li>Next.js 13 with App Router</li>
+<li>TypeScript</li>
+<li>Firebase 
+<ul>
+<li>Auth, Custom  token login (Login with username and password)</li>
+<li>Firestore</li>
+</ul>
+</li>
+<li>Tailwind CSS 3</li>
+<li>ESLint, Prettier</li>
+<li>PrimeReact</li>
+<li>React query, Axios</li>
+
+</ul>
 
 ### Getting Started
 

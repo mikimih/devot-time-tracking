@@ -1,5 +1,8 @@
-export const collections = { USERS: 'users', TASK: 'task' };
-import { Timestamp } from '@firebase/firestore-types';
+export const collections = {
+  USERS: 'users',
+  TASK: 'task',
+  TRACKED_TASK: 'trackedTask',
+};
 
 export interface User {
   email: string;
@@ -21,10 +24,10 @@ export interface UpdateTaskType {
   description?: string;
   duration?: number;
   isStopped?: boolean;
-  tracked?: TrackedTask[];
+  tracked?: TrackedTask;
 }
 
 export interface TrackedTask {
   date: Date;
-  timeTrack: Timestamp;
+  timeTrack: number;
 }

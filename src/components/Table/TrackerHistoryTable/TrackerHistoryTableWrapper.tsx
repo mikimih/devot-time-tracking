@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from 'react';
 import { DataTableFilterMeta } from 'primereact/datatable';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import { InputField } from '@/components/InputField/InputField';
-import closeIcon from '../../../public/svg/close.svg';
+import closeIcon from '../../../../public/svg/close.svg';
 import DatePickerField from '@/components/DatePicker/DatePickerField';
 import dayjs from 'dayjs';
 
@@ -41,7 +41,6 @@ export default function TrackerHistoryTableWrapper() {
           maxDate={dayjs().toDate()}
           onChange={(value: Date) => {
             const _filters = { ...filters };
-            console.log(value);
             // @ts-ignore
             filters.date.constraints[0].value = value;
             setFilters(_filters);
@@ -54,7 +53,6 @@ export default function TrackerHistoryTableWrapper() {
           maxDate={dayjs().toDate()}
           onChange={(value: Date) => {
             const _filters = { ...filters };
-            console.log(value);
             // @ts-ignore
             filters.date.constraints[1].value = value;
             setFilters(_filters);

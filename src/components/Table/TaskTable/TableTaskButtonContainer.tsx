@@ -1,8 +1,8 @@
 import React from 'react';
 import ButtonComponent from '@/components/Button/ButtonComponent';
 import NextImage from '@/components/NextImage';
-import stopwatchIcon from '../../../public/svg/stopwatch.svg';
-import stopIcon from '../../../public/svg/stop.svg';
+import stopwatchIcon from '../../../../public/svg/stopwatch.svg';
+import stopIcon from '../../../../public/svg/stop.svg';
 
 interface TableTaskButtonContainerProps {
   createTask: () => void;

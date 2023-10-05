@@ -30,7 +30,7 @@ class AxiosService {
   async updateUserTask(req: UpdateTaskType) {
     return api.patch(`/api/userTasks/${req.id}`, { ...req });
   }
-  async markAllStopped(req: UpdateTaskType[]) {
+  async markAllStopped(req: Task[]) {
     return api.post('/api/userTasks/markStopped', req);
   }
   async deleteUserTask(id: string) {
