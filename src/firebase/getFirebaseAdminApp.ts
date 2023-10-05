@@ -4,7 +4,7 @@ if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert({
       type: process.env.FIREBASE_ADMIN_SDK_SERVICE_TYPE,
-      projectId: process.env.FIREBASE_ADMIN_SDK_PROJECT_ID,
+      projectId: 'devoted-time-tracking',
       private_key_id: process.env.FIREBASE_ADMIN_SDK_PRIVATE_KEY_ID,
       privateKey: process.env.FIREBASE_ADMIN_SDK_PRIVATE_KEY
         ? process.env.FIREBASE_ADMIN_SDK_PRIVATE_KEY.replace(/\\n/g, '\n')
