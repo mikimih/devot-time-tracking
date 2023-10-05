@@ -6,7 +6,7 @@ import {
   useDeleteUserTask,
   useMarkAllStopped,
   useUpdateUserTask,
-} from '@/lib/queryHook';
+} from '@/lib/hook/queryHook';
 import { useEffect, useState } from 'react';
 import { Task, UpdateTaskType } from '@/firebase/firestore/types';
 import { Column, ColumnBodyOptions } from 'primereact/column';
@@ -17,7 +17,8 @@ import { ReactComponent as DeleteIcon } from '../../../../public/svg/trash.svg';
 import { cn } from '@/lib/utils';
 import TableTaskButtonContainer from '@/components/Table/TaskTable/TableTaskButtonContainer';
 import PlayStopCell from '@/components/Table/TaskTable/PlayPauseCell';
-import TimerCell from '@/components/Table/TaskTable/TimerCell';
+import TimerTaskCell from '@/components/Table/TaskTable/TimerTaskCell';
+import Spinner from '@/components/Loader/Spinner';
 
 const textEditor = (options: any) => {
   return (
@@ -61,66 +62,19 @@ export default function TrackerTableWrapper() {
 
   const dateBodyTemplate = (rowData: Task, column: ColumnBodyOptions) => {
     return (
-      <TimerCell
+      <TimerTaskCell
+        updateTask={updateTask}
+        setActiveUserTasks={setActiveUserTasks}
+        activeStopwatchIndex={activeStopwatchIndex}
+        activeUserTasks={activeUserTasks}
+        column={column}
         rowData={rowData}
-        isActiveStopWatch={
-          activeStopwatchIndex && activeStopwatchIndex[column.rowIndex]
-            ? activeStopwatchIndex[column.rowIndex]
-            : false
-        }
-        onStopAction={(seconds) => {
-          setActiveStopwatchIndex(undefined);
-          const activeUserTasksCopy = [...activeUserTasks];
-          const index = column.rowIndex;
-          const durationStart = activeUserTasksCopy[index].duration;
-          const durationPeriod = seconds - durationStart;
-          const durationInfo = {
-            duration: seconds,
-            tracked: {
-              date: new Date(),
-              timeTrack: durationPeriod,
-            },
-          };
-          const updatedValues: UpdateTaskType = {
-            id: rowData.id,
-            isStopped: true,
-            ...(durationPeriod > 0 ? durationInfo : {}),
-          };
-
-          activeUserTasksCopy.splice(index, 1);
-          setActiveUserTasks(activeUserTasksCopy);
-          updateTask(updatedValues);
-        }}
-        periodicallyUpdateFunction={(seconds) => {
-          const updatedValues: UpdateTaskType = {
-            id: rowData.id,
-            duration: seconds,
-          };
-          updateTask(updatedValues);
-        }}
-        onPauseAction={(seconds) => {
-          const _data = [...activeUserTasks];
-          const index = column.rowIndex;
-          const durationStart = _data[index].duration;
-          _data[index].duration = seconds;
-          setActiveUserTasks(_data);
-
-          const durationPeriod = seconds - durationStart;
-          const updatedValues: UpdateTaskType = {
-            id: rowData.id,
-            duration: rowData.duration,
-            tracked: {
-              date: new Date(),
-              timeTrack: durationPeriod,
-            },
-          };
-          updateTask(updatedValues);
-        }}
+        setActiveStopwatchIndex={setActiveStopwatchIndex}
       />
     );
   };
   const playPauseButtonsTemplate = (
-    rowData: Task,
+    _rowData: Task,
     column: ColumnBodyOptions
   ) => {
     return (
@@ -131,15 +85,8 @@ export default function TrackerTableWrapper() {
             activeStopwatchIndex[column.rowIndex] === TimerMode.Play
           )
         }
-        pauseAction={() => {
-          setActiveStopwatchIndex({ [column.rowIndex]: TimerMode.Pause });
-        }}
-        playAction={() => {
-          setActiveStopwatchIndex({ [column.rowIndex]: TimerMode.Play });
-        }}
-        stopAction={() => {
-          setActiveStopwatchIndex({ [column.rowIndex]: TimerMode.Stop });
-        }}
+        rowIndex={column.rowIndex}
+        setActiveStopwatch={setActiveStopwatchIndex}
       />
     );
   };
@@ -162,7 +109,7 @@ export default function TrackerTableWrapper() {
     );
   };
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   const onRowEditComplete = (e: DataTableRowEditCompleteEvent) => {

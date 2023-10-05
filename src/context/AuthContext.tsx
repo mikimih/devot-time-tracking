@@ -13,7 +13,7 @@ import {
 } from 'firebase/auth';
 import { auth } from '@/firebase/config';
 import { AxiosError } from 'axios';
-import { useLogIn, useSignUp } from '@/lib/queryHook';
+import { useLogIn, useSignUp } from '@/lib/hook/queryHook';
 import { SignUpFormData } from '@/components/Forms/SignUpForm';
 
 const AuthContext = createContext({});

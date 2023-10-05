@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
-import { useTimer } from '@/lib/timerHook';
+import { useTimer } from '@/lib/hook/useTimer';
 import { Task } from '@/firebase/firestore/types';
 import { cn } from '@/lib/utils';
 import { TimerMode } from '@/components/Table/TaskTable/TrackerTableWrapper';
+import { useInterval } from '@/lib/hook/useInterval';
 
 dayjs.extend(duration);
 
@@ -30,9 +31,6 @@ export default function TimerCell(props: TimerCellProps) {
   const { seconds, start, pause, running } = useTimer({
     seconds: rowData.duration,
   });
-
-  const intervalIdRef = useRef<NodeJS.Timeout | null>(null);
-
   useEffect(() => {
     switch (isActiveStopWatch) {
       case TimerMode.Play:
@@ -53,34 +51,12 @@ export default function TimerCell(props: TimerCellProps) {
     }
   }, [isActiveStopWatch]);
 
-  const sendSecondsPeriodically = () => {
-    if (running) {
+  useInterval(
+    () => {
       periodicallyUpdateFunction(seconds);
-
-      intervalIdRef.current = setTimeout(
-        sendSecondsPeriodically,
-        PERIODIC_CALL_TIMER
-      );
-    }
-  };
-
-  useEffect(() => {
-    if (running && !intervalIdRef.current) {
-      sendSecondsPeriodically();
-    } else {
-      if (intervalIdRef.current) {
-        clearTimeout(intervalIdRef.current);
-        intervalIdRef.current = null;
-      }
-    }
-
-    return () => {
-      if (intervalIdRef.current) {
-        clearTimeout(intervalIdRef.current);
-      }
-    };
-  }, [running, seconds]);
-
+    },
+    running ? PERIODIC_CALL_TIMER : null
+  );
   return (
     <span className={cn(isActiveStopWatch === TimerMode.Play && 'font-bold')}>
       {dayjs.duration(seconds, 's').format('HH:mm:ss')}

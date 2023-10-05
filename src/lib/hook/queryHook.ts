@@ -1,5 +1,5 @@
 import { useQuery, useMutation } from 'react-query';
-import routeService from './routeService';
+import routeService from '../routeService';
 import { SignInFormData } from '@/components/Forms/SignInForm';
 import { SignUpFormData } from '@/components/Forms/SignUpForm';
 
