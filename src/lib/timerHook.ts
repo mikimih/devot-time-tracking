@@ -9,7 +9,7 @@ const interval =
       return () => clearInterval(id);
     }, [callback]);
 
-const useSecondsInterval = interval(1000);
+const useOneSecondInterval = interval(1000);
 export const useTimer = ({
   seconds: initialSeconds = 0,
   running: initiallyRunning = false,
@@ -24,7 +24,7 @@ export const useTimer = ({
   const start = () => setRunning(true);
   const pause = () => setRunning(false);
 
-  useSecondsInterval(tick);
+  useOneSecondInterval(tick);
 
   return { pause, running, seconds, start };
 };

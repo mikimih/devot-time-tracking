@@ -16,8 +16,8 @@ import { Button } from 'primereact/button';
 import { ReactComponent as DeleteIcon } from '../../../../public/svg/trash.svg';
 import { cn } from '@/lib/utils';
 import TableTaskButtonContainer from '@/components/Table/TaskTable/TableTaskButtonContainer';
-import TimerCell from '@/components/Table/TaskTable/TimerCell';
 import PlayStopCell from '@/components/Table/TaskTable/PlayPauseCell';
+import TimerCell from '@/components/Table/TaskTable/TimerCell';
 
 const textEditor = (options: any) => {
   return (
@@ -45,8 +45,9 @@ export default function TrackerTableWrapper() {
   const { mutateAsync: markAllStopped } = useMarkAllStopped();
   const { mutate: updateTask } = useUpdateUserTask();
   const { mutate: deleteTask } = useDeleteUserTask();
-  const [activeStopwatchIndex, setActiveStopwatchIndex] =
-    useState<Record<number, TimerMode>>();
+  const [activeStopwatchIndex, setActiveStopwatchIndex] = useState<
+    Record<number, TimerMode> | undefined
+  >();
   const [activeUserTasks, setActiveUserTasks] = useState<Task[]>([]);
   const [actionCellWidth, setActionCellWidth] = useState(
     ACTION_CELL_WIDTH_ONE_BUTTON
@@ -88,6 +89,13 @@ export default function TrackerTableWrapper() {
 
           activeUserTasksCopy.splice(index, 1);
           setActiveUserTasks(activeUserTasksCopy);
+          updateTask(updatedValues);
+        }}
+        periodicallyUpdateFunction={(seconds) => {
+          const updatedValues: UpdateTaskType = {
+            id: rowData.id,
+            duration: seconds,
+          };
           updateTask(updatedValues);
         }}
         onPauseAction={(seconds) => {
