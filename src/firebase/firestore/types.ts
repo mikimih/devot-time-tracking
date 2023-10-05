@@ -24,10 +24,23 @@ export interface UpdateTaskType {
   description?: string;
   duration?: number;
   isStopped?: boolean;
-  tracked?: TrackedTask;
+  tracked?: CreateTrackedTask;
 }
 
 export interface TrackedTask {
+  id: string;
   date: Date;
   timeTrack: number;
+}
+export interface CreateTrackedTask {
+  id?: string;
+  date?: Date;
+  timeTrack?: number;
+}
+
+export interface TrackedTaskTime {
+  id: string;
+  date: Date;
+  timeTrack: number;
+  description?: string;
 }

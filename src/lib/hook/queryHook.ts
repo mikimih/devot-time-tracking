@@ -40,6 +40,18 @@ export const useActiveUserTasks = () => {
     staleTime: Infinity,
   });
 };
+export const useTrackedUserTasks = () => {
+  return useQuery({
+    queryKey: ['trackedTasks'],
+    queryFn: async () => {
+      const response = await routeService.getTrackedUserTasks();
+      return response.data;
+    },
+    cacheTime: Infinity,
+    staleTime: Infinity,
+  });
+};
+
 export const useUpdateUserTask = () => {
   return useMutation({
     mutationFn: routeService.updateUserTask,

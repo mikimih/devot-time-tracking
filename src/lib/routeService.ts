@@ -1,5 +1,9 @@
 import axios, { AxiosResponse } from 'axios';
-import { Task, UpdateTaskType } from '@/firebase/firestore/types';
+import {
+  Task,
+  TrackedTaskTime,
+  UpdateTaskType,
+} from '@/firebase/firestore/types';
 import { SignUpFormData } from '@/components/Forms/SignUpForm';
 import api from '@/lib/axios';
 
@@ -26,6 +30,10 @@ class AxiosService {
   }
   async getActiveUserTasks() {
     return api.get<AxiosResponse<Task[]>>('/api/activeUserTasks');
+  }
+
+  async getTrackedUserTasks() {
+    return api.get<AxiosResponse<TrackedTaskTime[]>>('/api/trackedTasks');
   }
   async updateUserTask(req: UpdateTaskType) {
     return api.patch(`/api/userTasks/${req.id}`, { ...req });
