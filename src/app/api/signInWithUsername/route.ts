@@ -9,6 +9,7 @@ import {
   DocumentData,
 } from 'firebase/firestore';
 
+getFirebaseAdminApp();
 const userConverter = {
   toFirestore(user: User): DocumentData {
     return user as User;

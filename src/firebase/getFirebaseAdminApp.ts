@@ -4,6 +4,7 @@ export default function getFirebaseAdminApp() {
   let app;
   try {
     app = admin.initializeApp({
+      console.log('admin')
       credential: admin.credential.cert({
         type: process.env.FIREBASE_ADMIN_SDK_SERVICE_TYPE,
         project_id: process.env.FIREBASE_ADMIN_SDK_PROJECT_ID,
@@ -21,6 +22,7 @@ export default function getFirebaseAdminApp() {
       } as admin.ServiceAccount),
     });
   } catch (error) {
+    console.log('error admin')
     app = admin.app();
   }
   return app;
