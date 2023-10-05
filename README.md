@@ -9,6 +9,7 @@ This app, TimeDevotion, was born as a result of the 'Devōt Challenge', a techni
 [//]: # ()
 [//]: # (This repository is deployed on url: <a href="https://main.d3a0iy3msooami.amplifyapp.com" target="_blank">TimeDevotion</a>)
 
+
 ### Packages
 
 This repository is packed with:
