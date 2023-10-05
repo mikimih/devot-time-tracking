@@ -1,5 +1,5 @@
 import { headers } from 'next/headers';
-import getFirebaseAdminApp from '@/firebase/getFirebaseAdminApp';
+import { auth } from '@/firebase/getFirebaseAdminApp';
 import { collections, UpdateTaskType } from '@/firebase/firestore/types';
 import {
   addDoc,
@@ -21,9 +21,7 @@ export async function PATCH(req: Request) {
         { status: 401 }
       );
     }
-    const decodedToken = await getFirebaseAdminApp()
-      .auth()
-      .verifyIdToken(authToken);
+    const decodedToken = await auth.verifyIdToken(authToken);
     const { id, tracked, ...rest } = (await req.json()) as UpdateTaskType;
 
     const userUid = decodedToken.uid;
@@ -60,9 +58,7 @@ export async function DELETE(_req: Request, { params }: any) {
         { status: 401 }
       );
     }
-    const decodedToken = await getFirebaseAdminApp()
-      .auth()
-      .verifyIdToken(authToken);
+    const decodedToken = await auth.verifyIdToken(authToken);
 
     const { id } = params;
     if (!id) {

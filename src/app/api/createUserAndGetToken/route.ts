@@ -10,11 +10,10 @@ import {
   limit,
 } from 'firebase/firestore';
 import { collections } from '@/firebase/firestore/types';
-import getFirebaseAdminApp from '@/firebase/getFirebaseAdminApp';
+import { auth } from '@/firebase/getFirebaseAdminApp';
 
 const SALT_ROUNDS = 10;
 export async function POST(req: Request) {
-  const auth = getFirebaseAdminApp().auth();
   type SignUpData = {
     email: string;
     password: string;

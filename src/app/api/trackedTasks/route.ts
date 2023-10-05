@@ -8,7 +8,7 @@ import {
   where,
 } from 'firebase/firestore';
 import { collections, TrackedTaskTime } from '@/firebase/firestore/types';
-import getFirebaseAdminApp from '@/firebase/getFirebaseAdminApp';
+import { auth } from '@/firebase/getFirebaseAdminApp';
 import { headers } from 'next/headers';
 
 export async function GET() {
@@ -22,9 +22,7 @@ export async function GET() {
         { status: 401 }
       );
     }
-    const decodedToken = await getFirebaseAdminApp()
-      .auth()
-      .verifyIdToken(authToken);
+    const decodedToken = await auth.verifyIdToken(authToken);
     const userUid = decodedToken.uid;
 
     const structuredData: TrackedTaskTime[] = [];

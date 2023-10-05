@@ -1,7 +1,7 @@
 import { db } from '@/firebase/config';
 import { collection, addDoc, doc } from 'firebase/firestore';
 import { collections } from '@/firebase/firestore/types';
-import getFirebaseAdminApp from '@/firebase/getFirebaseAdminApp';
+import { auth } from '@/firebase/getFirebaseAdminApp';
 import { headers } from 'next/headers';
 
 export async function POST() {
@@ -15,9 +15,7 @@ export async function POST() {
         { status: 401 }
       );
     }
-    const decodedToken = await getFirebaseAdminApp()
-      .auth()
-      .verifyIdToken(authToken);
+    const decodedToken = await auth.verifyIdToken(authToken);
     const userUid = decodedToken.uid;
     const userRef = collection(
       doc(db, collections.USERS, userUid),

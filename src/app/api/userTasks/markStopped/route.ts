@@ -1,5 +1,5 @@
 import { headers } from 'next/headers';
-import getFirebaseAdminApp from '@/firebase/getFirebaseAdminApp';
+import { auth } from '@/firebase/getFirebaseAdminApp';
 import { collections, UpdateTaskType } from '@/firebase/firestore/types';
 import { collection, doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/firebase/config';
@@ -15,9 +15,7 @@ export async function POST(req: Request) {
         { status: 401 }
       );
     }
-    const decodedToken = await getFirebaseAdminApp()
-      .auth()
-      .verifyIdToken(authToken);
+    const decodedToken = await auth.verifyIdToken(authToken);
 
     const userUid = decodedToken.uid;
     const activeTasks = (await req.json()) as UpdateTaskType[];

@@ -1,7 +1,7 @@
 import { db } from '@/firebase/config';
 import { collection, doc, getDocs, query, where } from 'firebase/firestore';
 import { collections } from '@/firebase/firestore/types';
-import getFirebaseAdminApp from '@/firebase/getFirebaseAdminApp';
+import { auth } from '@/firebase/getFirebaseAdminApp';
 import { headers } from 'next/headers';
 import { QueryDocumentSnapshot } from '@firebase/firestore';
 
@@ -16,9 +16,7 @@ export async function GET() {
         { status: 401 }
       );
     }
-    const decodedToken = await getFirebaseAdminApp()
-      .auth()
-      .verifyIdToken(authToken);
+    const decodedToken = await auth.verifyIdToken(authToken);
     const userUid = decodedToken.uid;
     const userTasksRef = await getDocs(
       query(
