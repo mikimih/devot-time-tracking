@@ -1,7 +1,6 @@
-import { initializeApp } from 'firebase/app';
+import { getApps, initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import getFirebaseAdminApp from '@/firebase/getFirebaseAdminApp';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -14,10 +13,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = getApps().length < 1 ? initializeApp(firebaseConfig) : getApps()[0];
 export const auth = getAuth(app);
-
-getFirebaseAdminApp();
 
 // Initialize Firestore
 export const db = getFirestore(app);
