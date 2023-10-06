@@ -43,4 +43,5 @@ export interface TrackedTaskTime {
   date: Date;
   timeTrack: number;
   description?: string;
+  taskId: string;
 }

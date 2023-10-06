@@ -54,6 +54,7 @@ export async function GET() {
               date: trackedTaskData.date,
               timeTrack: trackedTaskData.timeTrack,
               description: taskData.description,
+              taskId: taskId,
             });
           });
         }

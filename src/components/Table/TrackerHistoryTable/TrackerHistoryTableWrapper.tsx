@@ -99,7 +99,7 @@ export default function TrackerHistoryTableWrapper() {
     const { newData, index } = e;
     _data[index] = newData as TrackedTaskTime;
     const updatedValues: UpdateTaskType = {
-      id: newData.id,
+      id: newData.userId,
       description: newData.description,
     };
     setUserTasks(_data);
@@ -136,11 +136,7 @@ export default function TrackerHistoryTableWrapper() {
           header='Description'
           editor={(options) => textEditor(options)}
         />
-        <Column
-          field='timeTrack'
-          header='Time tracked'
-          editor={(options) => textEditor(options)}
-        />
+        <Column field='timeTrack' header='Time tracked' />
         <Column
           rowEditor
           style={{
