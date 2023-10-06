@@ -54,11 +54,7 @@ export default function SignUpForm() {
   });
   const onSubmit = async (data: SignUpFormData) => {
     setLoading(true);
-    const { errorMessage } = await signUp(
-      data.email,
-      data.password,
-      data.displayName
-    );
+    const { errorMessage } = await signUp(data);
     setLoading(false);
     if (errorMessage) {
       toastRef.current?.showError(errorMessage);

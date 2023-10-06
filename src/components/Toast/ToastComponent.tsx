@@ -18,7 +18,7 @@ const ToastComponent = forwardRef<ToastComponentProps, Props>((props, ref) => {
         severity: 'error',
         summary: 'Error',
         detail: errorMessage,
-        life: 100000,
+        life: 5000,
       });
     },
   }));

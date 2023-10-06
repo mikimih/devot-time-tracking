@@ -42,7 +42,7 @@ export async function POST(req: Request) {
       email: body.email,
       displayName: body.displayName,
     });
-    const token = await auth.createCustomToken(user.uid, { exp: 604800 });
+    const token = await auth.createCustomToken(user.uid);
     return Response.json({ token });
   } catch (error) {
     return Response.json(

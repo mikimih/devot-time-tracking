@@ -2,5 +2,5 @@ export const siteConfig = {
   title: 'TimeDevotion: Effortless Time Tracking App',
   description:
     'Discover the power of effective time management with TimeDevotion, the premier time tracking app. Streamline your workflow, boost productivity, and make the most of your valuable hours. Try it today!',
-  url: 'https://main.d3a0iy3msooami.amplifyapp.com',
+  url: 'https://devot-time-tracking.vercel.app',
 };

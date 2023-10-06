@@ -17,7 +17,7 @@ const nunito = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://main.d3a0iy3msooami.amplifyapp.com'),
+  metadataBase: new URL('https://devot-time-tracking.vercel.app'),
   title: {
     default: siteConfig.title,
     template: `%s | ${siteConfig.title}`,
