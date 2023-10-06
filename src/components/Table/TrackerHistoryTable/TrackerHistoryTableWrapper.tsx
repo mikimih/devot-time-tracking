@@ -11,11 +11,7 @@ import { Column } from 'primereact/column';
 import { ReactComponent as DeleteIcon } from '../../../../public/svg/trash.svg';
 import { cn } from '@/lib/utils';
 import TableComponent from '@/components/Table/TableComponent';
-import {
-  Task,
-  TrackedTaskTime,
-  UpdateTaskType,
-} from '@/firebase/firestore/types';
+import { TrackedTaskTime, UpdateTaskType } from '@/firebase/firestore/types';
 import {
   useDeleteUserTask,
   useTrackedUserTasks,
@@ -70,19 +66,19 @@ export default function TrackerHistoryTableWrapper() {
     }
   }, [status, data]);
 
-  const dateBodyTemplate = (rowData: Task) => {
+  const dateBodyTemplate = (rowData: TrackedTaskTime) => {
     return (
       <time dateTime={dayjs().format('YYYY-MM-DD')}>
-        {dayjs(rowData.createdAt).format('DD.MM.YYYY.')}
+        {dayjs(rowData.date).format('DD.MM.YYYY.')}
       </time>
     );
   };
-  const deleteButtonsTemplate = (rowData: Task) => {
+  const deleteButtonsTemplate = (rowData: TrackedTaskTime) => {
     return (
       <Button
         className='flex'
         onClick={() => {
-          deleteTask(rowData.id);
+          deleteTask(rowData.taskId);
           const userTasksCopy = [...userTasks];
           const index = userTasksCopy.findIndex((val) => val.id === rowData.id);
           userTasksCopy.splice(index, 1);
@@ -99,7 +95,7 @@ export default function TrackerHistoryTableWrapper() {
     const { newData, index } = e;
     _data[index] = newData as TrackedTaskTime;
     const updatedValues: UpdateTaskType = {
-      id: newData.userId,
+      id: newData.taskId,
       description: newData.description,
     };
     setUserTasks(_data);
